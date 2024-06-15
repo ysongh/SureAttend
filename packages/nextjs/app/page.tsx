@@ -7,6 +7,7 @@ import { Address } from "~~/components/scaffold-stark";
 import { useAccount } from "@starknet-react/core";
 import { Address as AddressType } from "@starknet-react/chains";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-stark/useScaffoldReadContract";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-stark/useScaffoldWriteContract";
 
 const Home: NextPage = () => {
   const connectedAddress = useAccount();
@@ -14,6 +15,12 @@ const Home: NextPage = () => {
   const { data: owner } = useScaffoldReadContract({
     contractName: "YourContract",
     functionName: "owner",
+  });
+
+  const { writeAsync: set_greeting } = useScaffoldWriteContract({
+    contractName: "YourContract",
+    functionName: "set_greeting",
+    args: ["Hello, world!", 0],
   });
 
   return (
@@ -46,6 +53,10 @@ const Home: NextPage = () => {
           </p>
 
           <p>Owner: {owner?.toString()}</p>
+
+          <button className="bg-green-400" onClick={() => set_greeting()}>
+            Set Greeting
+          </button>
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
