@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x03a6b3ffb857539a745b397ffc5eb8a0d22dfff9272a014ca5b40f5ef5c6811d",
+        "0x0290b6bb4b914033b1bb10911b39a566a001ca88611f0f0860d396a321d09a99",
       abi: [
         {
           type: "impl",
@@ -66,7 +66,7 @@ const deployedContracts = {
           items: [
             {
               type: "function",
-              name: "gretting",
+              name: "greeting",
               inputs: [],
               outputs: [
                 {
@@ -77,7 +77,7 @@ const deployedContracts = {
             },
             {
               type: "function",
-              name: "set_gretting",
+              name: "set_greeting",
               inputs: [
                 {
                   name: "new_greeting",
