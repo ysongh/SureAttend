@@ -6,9 +6,16 @@ import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-stark";
 import { useAccount } from "@starknet-react/core";
 import { Address as AddressType } from "@starknet-react/chains";
+import { useScaffoldReadContract } from "~~/hooks/scaffold-stark/useScaffoldReadContract";
 
 const Home: NextPage = () => {
   const connectedAddress = useAccount();
+
+  const { data: owner } = useScaffoldReadContract({
+    contractName: "YourContract",
+    functionName: "owner",
+  });
+
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -37,6 +44,8 @@ const Home: NextPage = () => {
               packages/snfoundry/contracts/src
             </code>
           </p>
+
+          <p>Owner: {owner?.toString()}</p>
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
