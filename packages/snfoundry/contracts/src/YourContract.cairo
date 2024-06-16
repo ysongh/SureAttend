@@ -3,6 +3,7 @@ use starknet::ContractAddress;
 #[starknet::interface]
 pub trait IYourContract<TContractState> {
     fn greeting(self: @TContractState) -> ByteArray;
+    fn totalCounter(self: @TContractState) -> u256;
     fn set_greeting(ref self: TContractState, new_greeting: ByteArray, amount_eth: u256);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
@@ -66,6 +67,9 @@ mod YourContract {
     impl YourContractImpl of IYourContract<ContractState> {
         fn greeting(self: @ContractState) -> ByteArray {
             self.greeting.read()
+        }
+        fn totalCounter(self: @ContractState) -> u256 {
+            self.total_counter.read()
         }
         fn set_greeting(ref self: ContractState, new_greeting: ByteArray, amount_eth: u256) {
             self.greeting.write(new_greeting);

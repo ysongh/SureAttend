@@ -17,6 +17,11 @@ const Home: NextPage = () => {
     functionName: "owner",
   });
 
+  const { data: totalCounter } = useScaffoldReadContract({
+    contractName: "YourContract",
+    functionName: "totalCounter",
+  });
+
   const { writeAsync: set_greeting } = useScaffoldWriteContract({
     contractName: "YourContract",
     functionName: "set_greeting",
@@ -53,6 +58,7 @@ const Home: NextPage = () => {
           </p>
 
           <p>Owner: {owner?.toString()}</p>
+          <p>Total Counter: {totalCounter?.toString()}</p>
 
           <button className="bg-green-400" onClick={() => set_greeting()}>
             Set Greeting

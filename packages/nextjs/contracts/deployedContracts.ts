@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x0290b6bb4b914033b1bb10911b39a566a001ca88611f0f0860d396a321d09a99",
+        "0x031d4701872786c8cb939807613e0c243ed66481ac93584e452c6237727dd020",
       abi: [
         {
           type: "impl",
@@ -71,6 +71,17 @@ const deployedContracts = {
               outputs: [
                 {
                   type: "core::byte_array::ByteArray",
+                },
+              ],
+              state_mutability: "view",
+            },
+            {
+              type: "function",
+              name: "totalCounter",
+              inputs: [],
+              outputs: [
+                {
+                  type: "core::integer::u256",
                 },
               ],
               state_mutability: "view",
