@@ -33,7 +33,7 @@ const Events: NextPage = () => {
       <h1 className="text-4xl font-bold mb-8">Upcoming Events</h1>
       <div className="space-y-8">
         {events.map((event) => (
-          <div key={event.id} className="p-6 border rounded-lg shadow-sm">
+          <div key={event.id} className="p-6 border rounded-lg shadow-sm bg-white">
             <h2 className="text-2xl font-semibold">{event.title}</h2>
             <p className="text-gray-500">{new Date(event.date).toLocaleDateString()}</p>
             <p className="text-gray-700">{event.location}</p>
