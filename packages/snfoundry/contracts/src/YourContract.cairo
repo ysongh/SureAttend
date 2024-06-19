@@ -5,6 +5,7 @@ pub trait IYourContract<TContractState> {
     fn greeting(self: @TContractState) -> ByteArray;
     fn totalCounter(self: @TContractState) -> u256;
     fn set_greeting(ref self: TContractState, new_greeting: ByteArray, amount_eth: u256);
+    fn get_event_byid(self: @TContractState, id: u256) -> ByteArray;
     fn create_event(ref self: TContractState, name: ByteArray);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
@@ -73,6 +74,9 @@ mod YourContract {
         }
         fn totalCounter(self: @ContractState) -> u256 {
             self.total_counter.read()
+        }
+        fn get_event_byid(self: @ContractState, id: u256) -> ByteArray {
+            self.events.read(id)
         }
         fn create_event(ref self: ContractState, name: ByteArray) {
             self.events.write(self.total_events.read(), name);
