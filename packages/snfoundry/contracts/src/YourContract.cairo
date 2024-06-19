@@ -5,6 +5,7 @@ pub trait IYourContract<TContractState> {
     fn greeting(self: @TContractState) -> ByteArray;
     fn totalCounter(self: @TContractState) -> u256;
     fn set_greeting(ref self: TContractState, new_greeting: ByteArray, amount_eth: u256);
+    fn create_event(ref self: TContractState, name: ByteArray);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
 }
@@ -51,6 +52,8 @@ mod YourContract {
         premium: bool,
         total_counter: u256,
         user_greeting_counter: LegacyMap<ContractAddress, u256>,
+        total_events: u256,
+        events: LegacyMap<u256, ByteArray>,
         #[substorage(v0)]
         ownable: OwnableComponent::Storage,
     }
@@ -70,6 +73,10 @@ mod YourContract {
         }
         fn totalCounter(self: @ContractState) -> u256 {
             self.total_counter.read()
+        }
+        fn create_event(ref self: ContractState, name: ByteArray) {
+            self.events.write(self.total_events.read(), name);
+            self.total_events.write(self.total_events.read() + 1);
         }
         fn set_greeting(ref self: ContractState, new_greeting: ByteArray, amount_eth: u256) {
             self.greeting.write(new_greeting);
