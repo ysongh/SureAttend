@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x058824179901c0bca23fc3167385590563371590335c24da9a397a5a572fc690",
+        "0x04b68ddac8e79f4cd3a030b10e691d053f98fb0d7c84aeba6a0ab943c9a770be",
       abi: [
         {
           type: "impl",
@@ -120,10 +120,30 @@ const deployedContracts = {
             },
             {
               type: "function",
+              name: "get_eventlocaiton_byid",
+              inputs: [
+                {
+                  name: "id",
+                  type: "core::integer::u256",
+                },
+              ],
+              outputs: [
+                {
+                  type: "core::byte_array::ByteArray",
+                },
+              ],
+              state_mutability: "view",
+            },
+            {
+              type: "function",
               name: "create_event",
               inputs: [
                 {
                   name: "name",
+                  type: "core::byte_array::ByteArray",
+                },
+                {
+                  name: "location",
                   type: "core::byte_array::ByteArray",
                 },
               ],
