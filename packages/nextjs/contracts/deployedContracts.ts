@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x07828c923e3ff255f34aaa436cd97a736bba9de9c9c3df4c11e46c528090eff8",
+        "0x058824179901c0bca23fc3167385590563371590335c24da9a397a5a572fc690",
       abi: [
         {
           type: "impl",
@@ -104,7 +104,7 @@ const deployedContracts = {
             },
             {
               type: "function",
-              name: "get_event_byid",
+              name: "get_eventname_byid",
               inputs: [
                 {
                   name: "id",

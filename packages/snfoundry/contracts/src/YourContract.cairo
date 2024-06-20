@@ -5,7 +5,7 @@ pub trait IYourContract<TContractState> {
     fn greeting(self: @TContractState) -> ByteArray;
     fn totalCounter(self: @TContractState) -> u256;
     fn set_greeting(ref self: TContractState, new_greeting: ByteArray, amount_eth: u256);
-    fn get_event_byid(self: @TContractState, id: u256) -> ByteArray;
+    fn get_eventname_byid(self: @TContractState, id: u256) -> ByteArray;
     fn create_event(ref self: TContractState, name: ByteArray);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
@@ -54,7 +54,7 @@ mod YourContract {
         total_counter: u256,
         user_greeting_counter: LegacyMap<ContractAddress, u256>,
         total_events: u256,
-        events: LegacyMap<u256, ByteArray>,
+        event_name: LegacyMap<u256, ByteArray>,
         #[substorage(v0)]
         ownable: OwnableComponent::Storage,
     }
@@ -75,11 +75,11 @@ mod YourContract {
         fn totalCounter(self: @ContractState) -> u256 {
             self.total_counter.read()
         }
-        fn get_event_byid(self: @ContractState, id: u256) -> ByteArray {
-            self.events.read(id)
+        fn get_eventname_byid(self: @ContractState, id: u256) -> ByteArray {
+            self.event_name.read(id)
         }
         fn create_event(ref self: ContractState, name: ByteArray) {
-            self.events.write(self.total_events.read(), name);
+            self.event_name.write(self.total_events.read(), name);
             self.total_events.write(self.total_events.read() + 1);
         }
         fn set_greeting(ref self: ContractState, new_greeting: ByteArray, amount_eth: u256) {
