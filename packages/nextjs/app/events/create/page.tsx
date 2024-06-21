@@ -26,7 +26,7 @@ const EventCreationForm = () => {
   const { writeAsync: create_event } = useScaffoldWriteContract({
     contractName: "YourContract",
     functionName: "create_event",
-    args: [formData.title],
+    args: [formData.title, formData.location],
   });
 
   return (
