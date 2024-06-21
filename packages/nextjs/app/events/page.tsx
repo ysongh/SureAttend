@@ -45,8 +45,8 @@ const Events: NextPage = () => {
         </button>
       </div>
       <div className="space-y-8">
-        {events.map((event) => (
-          <EventCard event={event} />
+        {events.map((event, index) => (
+          <EventCard key={index} event={event} id={index} />
         ))}
       </div>
     </div>
