@@ -27,7 +27,7 @@ const Events: NextPage = () => {
       </div>
       <div className="space-y-8">
         {[...Array(totalEvent)].map((_, index) => (
-         <EventCard key={index} id={index} />
+          <EventCard key={index} id={index} />
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { byteArray } from "starknet-dev";
 
 import { useScaffoldReadContract } from '~~/hooks/scaffold-stark/useScaffoldReadContract';
@@ -24,6 +25,9 @@ function EventCard({ id } : any) {
       <p className="text-gray-500">{new Date("2024-08-15").toLocaleDateString()}</p>
       <p className="text-gray-700">{location && byteArray.stringFromByteArray(location as any)}</p>
       <p className="mt-4">Test</p>
+      <Link href={`/events/event/${id}`}>
+        View
+      </Link>
     </div>
   )
 }
