@@ -5,6 +5,7 @@ pub trait IYourContract<TContractState> {
     fn greeting(self: @TContractState) -> ByteArray;
     fn totalCounter(self: @TContractState) -> u256;
     fn set_greeting(ref self: TContractState, new_greeting: ByteArray, amount_eth: u256);
+    fn totalEvent(self: @TContractState) -> u256;
     fn get_eventname_byid(self: @TContractState, id: u256) -> ByteArray;
     fn get_eventlocaiton_byid(self: @TContractState, id: u256) -> ByteArray;
     fn create_event(ref self: TContractState, name: ByteArray, location: ByteArray);
@@ -46,7 +47,6 @@ mod YourContract {
         value: u256,
     }
 
-
     #[storage]
     struct Storage {
         eth_token: IERC20CamelDispatcher,
@@ -76,6 +76,9 @@ mod YourContract {
         }
         fn totalCounter(self: @ContractState) -> u256 {
             self.total_counter.read()
+        }
+        fn totalEvent(self: @ContractState) -> u256 {
+            self.total_events.read()
         }
         fn get_eventname_byid(self: @ContractState, id: u256) -> ByteArray {
             self.event_name.read(id)

@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x0371e4af0d8ae26c494761adf0d13dccd8be1029109dce3a86f59a8c450e51f1",
+        "0x03bbbd28abc027e5a820836d06ec15aa609230ffd6631dacfc267a63c2da73f2",
       abi: [
         {
           type: "impl",
@@ -101,6 +101,17 @@ const deployedContracts = {
               ],
               outputs: [],
               state_mutability: "external",
+            },
+            {
+              type: "function",
+              name: "totalEvent",
+              inputs: [],
+              outputs: [
+                {
+                  type: "core::integer::u256",
+                },
+              ],
+              state_mutability: "view",
             },
             {
               type: "function",

@@ -4,34 +4,15 @@ import type { NextPage } from "next";
 import { useRouter } from "next/navigation";
 
 import EventCard from "./_components/EventCard";
-
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-  description: string;
-}
-
-const events: Event[] = [
-  {
-    id: 1,
-    title: 'Tech Conference 2024',
-    date: '2024-07-20',
-    location: 'San Francisco, CA',
-    description: 'Join us for a day of insightful tech talks and networking.',
-  },
-  {
-    id: 2,
-    title: 'Art Expo',
-    date: '2024-08-15',
-    location: 'New York, NY',
-    description: 'Experience the latest in contemporary art.',
-  },
-];
+import { useScaffoldReadContract } from "~~/hooks/scaffold-stark/useScaffoldReadContract";
 
 const Events: NextPage = () => {
   const router = useRouter();
+
+  const { data: totalEvent } = useScaffoldReadContract({
+    contractName: "YourContract",
+    functionName: "totalEvent",
+  });
 
   return (
     <div className="mx-auto p-4">
@@ -45,8 +26,8 @@ const Events: NextPage = () => {
         </button>
       </div>
       <div className="space-y-8">
-        {events.map((event, index) => (
-          <EventCard key={index} event={event} id={index} />
+        {[...Array(totalEvent)].map((_, index) => (
+         <EventCard key={index} id={index} />
         ))}
       </div>
     </div>
