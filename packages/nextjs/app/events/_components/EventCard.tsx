@@ -19,10 +19,16 @@ function EventCard({ id } : any) {
     args: [id]
   });
 
+  const { data: date } = useScaffoldReadContract({
+    contractName: "YourContract",
+    functionName: "get_eventdate_byid",
+    args: [id]
+  });
+
   return (
     <div className="p-6 border rounded-lg shadow-sm bg-white">
       <h2 className="text-2xl font-semibold">{eventname && byteArray.stringFromByteArray(eventname as any)}</h2>
-      <p className="text-gray-500">{new Date("2024-08-15").toLocaleDateString()}</p>
+      <p className="text-gray-500">{date && new Date(byteArray.stringFromByteArray(date as any)).toLocaleDateString()}</p>
       <p className="text-gray-700">{location && byteArray.stringFromByteArray(location as any)}</p>
       <p className="mt-4">Test</p>
       <Link href={`/events/event/${id}`}>
