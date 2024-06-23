@@ -80,13 +80,13 @@ const EventCreationForm = () => {
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
           />
         </div>
-        <button
+      </form>
+      <button
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           onClick={() => create_event()}
         >
           Create Event
         </button>
-      </form>
     </div>
   );
 };
