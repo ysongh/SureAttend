@@ -3,6 +3,7 @@
 import { byteArray } from "starknet-dev";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-stark/useScaffoldReadContract";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-stark/useScaffoldWriteContract";
 
 const EventDetail = ({ params }: { params: { id: number } }) => {
   const { data: eventname } = useScaffoldReadContract({
@@ -35,6 +36,12 @@ const EventDetail = ({ params }: { params: { id: number } }) => {
     args: [params.id]
   });
 
+  const { writeAsync: join_event } = useScaffoldWriteContract({
+    contractName: "YourContract",
+    functionName: "join_event",
+    args: [params.id],
+  });
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -46,6 +53,12 @@ const EventDetail = ({ params }: { params: { id: number } }) => {
           <p className="flex items-center">
             <UserGroupIcon  className="h-5 w-5 mr-2"/> {join?.toString()}
           </p>
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            onClick={() => join_event()}
+          >
+            Join Event
+          </button>
         </div>
       </div>
     </div>

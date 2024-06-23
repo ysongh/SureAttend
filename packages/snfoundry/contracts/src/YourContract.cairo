@@ -12,6 +12,7 @@ pub trait IYourContract<TContractState> {
     fn get_eventdescription_byid(self: @TContractState, id: u256) -> ByteArray;
     fn get_eventjoin_byid(self: @TContractState, id: u256) -> u256;
     fn create_event(ref self: TContractState, name: ByteArray, location: ByteArray, eventdate: ByteArray, description: ByteArray);
+    fn join_event(ref self: TContractState, id: u256);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
 }
@@ -108,6 +109,9 @@ mod YourContract {
             self.event_description.write(self.total_events.read(), description);
             self.event_join.write(self.total_events.read(), 0);
             self.total_events.write(self.total_events.read() + 1);
+        }
+        fn join_event(ref self: ContractState, id: u256) {
+            self.event_join.write(id, self.event_join.read(id) + 1);
         }
         fn set_greeting(ref self: ContractState, new_greeting: ByteArray, amount_eth: u256) {
             self.greeting.write(new_greeting);

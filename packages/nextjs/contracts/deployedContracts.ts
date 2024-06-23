@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x04644df5a828edcd09aa1b094824ff686613c2dfd61f362814edfccb82327e4b",
+        "0x0506a76b6757677caa8f851c85dd81f4d9d0655446838908d46cd005825e66fc",
       abi: [
         {
           type: "impl",
@@ -212,6 +212,18 @@ const deployedContracts = {
                 {
                   name: "description",
                   type: "core::byte_array::ByteArray",
+                },
+              ],
+              outputs: [],
+              state_mutability: "external",
+            },
+            {
+              type: "function",
+              name: "join_event",
+              inputs: [
+                {
+                  name: "id",
+                  type: "core::integer::u256",
                 },
               ],
               outputs: [],
