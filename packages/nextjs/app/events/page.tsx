@@ -16,10 +16,10 @@ const Events: NextPage = () => {
 
   return (
     <div className="mx-auto p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-bold mb-8">Upcoming Events</h1>
+      <div className="flex justify-between items-center w-[500px] mb-3">
+        <h1 className="text-4xl font-bold">Upcoming Events</h1>
         <button
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           onClick={() => router.push("/events/create")}
         >
           Create Event

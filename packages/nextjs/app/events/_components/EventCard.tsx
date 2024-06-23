@@ -30,7 +30,7 @@ function EventCard({ id } : any) {
       <h2 className="text-2xl font-semibold">{eventname && byteArray.stringFromByteArray(eventname as any)}</h2>
       <p className="text-gray-500">{date && new Date(byteArray.stringFromByteArray(date as any)).toLocaleDateString()}</p>
       <p className="text-gray-700">{location && byteArray.stringFromByteArray(location as any)}</p>
-      <Link href={`/events/event/${id}`}>
+      <Link href={`/events/event/${id}`} className="bg-green-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
         View
       </Link>
     </div>
