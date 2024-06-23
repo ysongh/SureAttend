@@ -9,7 +9,8 @@ pub trait IYourContract<TContractState> {
     fn get_eventname_byid(self: @TContractState, id: u256) -> ByteArray;
     fn get_eventlocaiton_byid(self: @TContractState, id: u256) -> ByteArray;
     fn get_eventdate_byid(self: @TContractState, id: u256) -> ByteArray;
-    fn create_event(ref self: TContractState, name: ByteArray, location: ByteArray, eventdate: ByteArray);
+    fn get_eventdescription_byid(self: @TContractState, id: u256) -> ByteArray;
+    fn create_event(ref self: TContractState, name: ByteArray, location: ByteArray, eventdate: ByteArray, description: ByteArray);
     fn withdraw(ref self: TContractState);
     fn premium(self: @TContractState) -> bool;
 }
@@ -59,6 +60,7 @@ mod YourContract {
         event_name: LegacyMap<u256, ByteArray>,
         event_location: LegacyMap<u256, ByteArray>,
         event_date: LegacyMap<u256, ByteArray>,
+        event_description: LegacyMap<u256, ByteArray>,
         #[substorage(v0)]
         ownable: OwnableComponent::Storage,
     }
@@ -88,13 +90,17 @@ mod YourContract {
         fn get_eventlocaiton_byid(self: @ContractState, id: u256) -> ByteArray {
             self.event_location.read(id)
         }
+        fn get_eventdescription_byid(self: @ContractState, id: u256) -> ByteArray {
+            self.event_description.read(id)
+        }
         fn get_eventdate_byid(self: @ContractState, id: u256) -> ByteArray {
             self.event_date.read(id)
         }
-        fn create_event(ref self: ContractState, name: ByteArray, location: ByteArray, eventdate: ByteArray) {
+        fn create_event(ref self: ContractState, name: ByteArray, location: ByteArray, eventdate: ByteArray, description: ByteArray) {
             self.event_name.write(self.total_events.read(), name);
             self.event_location.write(self.total_events.read(), location);
             self.event_date.write(self.total_events.read(), eventdate);
+            self.event_description.write(self.total_events.read(), description);
             self.total_events.write(self.total_events.read() + 1);
         }
         fn set_greeting(ref self: ContractState, new_greeting: ByteArray, amount_eth: u256) {

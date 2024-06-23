@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     YourContract: {
       address:
-        "0x06594eac13ed0d3ffb85ddd044bd580e615274c25c3b7e79c529811f2cdc4cac",
+        "0x05678178105ad1ec30a334f66cef691302aab231eff2738ab32e832b4f17ad1e",
       abi: [
         {
           type: "impl",
@@ -163,6 +163,22 @@ const deployedContracts = {
             },
             {
               type: "function",
+              name: "get_eventdescription_byid",
+              inputs: [
+                {
+                  name: "id",
+                  type: "core::integer::u256",
+                },
+              ],
+              outputs: [
+                {
+                  type: "core::byte_array::ByteArray",
+                },
+              ],
+              state_mutability: "view",
+            },
+            {
+              type: "function",
               name: "create_event",
               inputs: [
                 {
@@ -175,6 +191,10 @@ const deployedContracts = {
                 },
                 {
                   name: "eventdate",
+                  type: "core::byte_array::ByteArray",
+                },
+                {
+                  name: "description",
                   type: "core::byte_array::ByteArray",
                 },
               ],
